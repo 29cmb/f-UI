@@ -9,5 +9,5 @@ fun buildFontUI(pack: File, exec: FontUIBuilderContext.() -> Unit): FontUI {
 
     val context = FontUIBuilderContext(pack)
     exec(context)
-    return context.fontUI
+    return context.build()
 }

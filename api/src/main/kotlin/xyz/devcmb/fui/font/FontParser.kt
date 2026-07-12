@@ -61,7 +61,7 @@ class FontParser(val builderContext: FontUIBuilderContext) {
             val file: IdentifiedResource,
             val ascent: Int,
             val height: Int,
-            val chars: List<Char>
+            val chars: List<String>
         ) : FontProvider
     }
 }
