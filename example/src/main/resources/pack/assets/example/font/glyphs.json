@@ -1,0 +1,13 @@
+{
+  "providers": [
+    {
+      "type": "bitmap",
+      "height": 8,
+      "file": "example:glyph/collection",
+      "ascent": 7,
+      "chars": [
+        "\uF000"
+      ]
+    }
+  ]
+}
