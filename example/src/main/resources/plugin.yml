@@ -1,0 +1,11 @@
+name: fui-example
+description: $description
+prefix: FUI
+version: '${version}'
+
+main: xyz.devcmb.fuiExample.FuiExample
+api-version: '26.1.2'
+load: POSTWORLD
+
+authors: [DevCmb]
+website: devcmb.xyz
