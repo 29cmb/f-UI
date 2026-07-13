@@ -5,8 +5,6 @@ plugins {
     `maven-publish`
 }
 
-version = "1.0.0"
-
 dependencies {
     implementation(libs.adventure)
     implementation(libs.serialization)
@@ -16,15 +14,13 @@ tasks.shadowJar {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
-afterEvaluate {
-    publishing {
-        publications {
-            register<MavenPublication>("release") {
-                from(components["java"])
-                groupId = "com.github.29cmb"
-                artifactId = "f-ui"
-                version = project.version.toString()
-            }
+publishing {
+    publications {
+        register<MavenPublication>("release") {
+            artifact(tasks.shadowJar)
+            groupId = project.group.toString()
+            artifactId = "f-ui"
+            version = project.version.toString()
         }
     }
 }
