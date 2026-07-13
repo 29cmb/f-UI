@@ -28,13 +28,16 @@ class FontParser internal constructor(val builderContext: FontUIBuilderContext) 
             val providerGlyph = when(val decoded = Json.decodeFromJsonElement<FontProvider>(obj)) {
                 is FontProvider.BitmapFontProvider -> parseBitmapFontProvider(decoded)
             }
-            glyphs.add(providerGlyph)
+            providerGlyph?.let { glyphs.add(providerGlyph) }
         }
 
         return glyphs
     }
 
-    fun parseBitmapFontProvider(provider: FontProvider.BitmapFontProvider): FontGlyph {
+    fun parseBitmapFontProvider(provider: FontProvider.BitmapFontProvider): FontGlyph? {
+        // Only support single-character bitmaps for now
+        if(provider.chars.size != 1) return null
+
         val path = builderContext.fs.getPath(Path.of(
             "assets",
             provider.file.namespace,

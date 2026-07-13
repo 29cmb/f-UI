@@ -35,11 +35,13 @@ class TextDrawContext internal constructor(internal val fontUI: FontUI, val tota
         cursorX = targetX + width
     }
 
-    fun draw(component: Component, align: Double) {
+    fun draw(component: Component, alignmentConstant: Double) {
         val width = fontUI.fontMeasurer.measureComponent(component)
-        moveCursor(cursorX + (-(width * align).roundToInt()), cursorY)
+        moveCursor(cursorX + (-(width * alignmentConstant).roundToInt()), cursorY)
         drawWithWidth(component, width)
     }
+
+    fun draw(component: Component, alignment: Alignment) = draw(component, alignment.alignmentConstant)
 
     fun drawWithWidth(component: Component, width: Double) {
         this.component += alignY(component)
