@@ -17,8 +17,13 @@ tasks.shadowJar {
 publishing {
     publications {
         register<MavenPublication>("release") {
-            artifactId = "f-UI"
-            artifact(tasks.shadowJar)
+            groupId = project.group.toString()
+            artifactId = project.name
+            version = project.version.toString()
+
+            artifact(tasks.shadowJar) {
+                classifier = ""
+            }
         }
     }
 }
