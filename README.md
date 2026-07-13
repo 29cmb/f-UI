@@ -22,12 +22,12 @@ Or if you're using maven, enter this into your `pom.xml`
 </repositories>
 ```
 
-Once you have the repository set up, you can add the `f-ui` dependency in your build system
+Once you have the repository set up, you can add the `f-UI` dependency in your build system
 
 If you use gradle:
 ```kotlin
 dependencies {
-    implementation("com.github.29cmb:f-ui:VERSION")
+    implementation("com.github.29cmb:f-UI:VERSION")
 }
 ```
 
@@ -35,7 +35,7 @@ Or if you use maven:
 ```xml
 <dependency>
     <groupId>com.github.29cmb</groupId>
-    <artifactId>f-ui</artifactId>
+    <artifactId>f-UI</artifactId>
     <version>VERSION</version>
 </dependency>
 ```

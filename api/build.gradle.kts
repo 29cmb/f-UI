@@ -17,6 +17,7 @@ tasks.shadowJar {
 publishing {
     publications {
         register<MavenPublication>("release") {
+            artifactId = "f-UI"
             artifact(tasks.shadowJar)
         }
     }
