@@ -15,7 +15,7 @@ import java.nio.file.Path
 import javax.imageio.ImageIO
 import kotlin.io.path.exists
 
-class FontParser(val builderContext: FontUIBuilderContext) {
+class FontParser internal constructor(val builderContext: FontUIBuilderContext) {
     fun parseFontFile(stream: BufferedReader): ArrayList<FontGlyph> {
         val contents = stream.readText()
 

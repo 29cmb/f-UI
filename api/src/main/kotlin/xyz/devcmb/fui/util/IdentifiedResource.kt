@@ -8,8 +8,9 @@ import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 
+@ConsistentCopyVisibility
 @Serializable(with = IdentifiedResourceSerializer::class)
-data class IdentifiedResource(
+data class IdentifiedResource internal constructor(
     val path: String
 ) {
     @Transient
@@ -20,7 +21,7 @@ data class IdentifiedResource(
 
 }
 
-object IdentifiedResourceSerializer : KSerializer<IdentifiedResource> {
+internal object IdentifiedResourceSerializer : KSerializer<IdentifiedResource> {
     override val descriptor: SerialDescriptor =
         PrimitiveSerialDescriptor("IdentifiedResource", PrimitiveKind.STRING)
 

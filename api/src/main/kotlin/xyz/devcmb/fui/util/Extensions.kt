@@ -1,8 +1,9 @@
 package xyz.devcmb.fui.util
 
+import net.kyori.adventure.text.Component
 import java.awt.image.BufferedImage
 
-fun BufferedImage.trimmedWidth(): Int {
+internal fun BufferedImage.trimmedWidth(): Int {
     var left = 0
     var right = width - 1
 
@@ -26,3 +27,5 @@ private fun BufferedImage.isColumnEmpty(x: Int): Boolean {
     }
     return true
 }
+
+internal operator fun Component.plus(other: Component): Component = this.append(other)

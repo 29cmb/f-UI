@@ -5,15 +5,15 @@ import xyz.devcmb.fui.FontUI
 import xyz.devcmb.fui.font.DefaultAscentFont
 import xyz.devcmb.fui.font.FontGlyph
 import xyz.devcmb.fui.font.FontParser
-import xyz.devcmb.fui.util.Logger
+import xyz.devcmb.fui.util.FontUILogger
 import java.io.File
 import java.nio.file.FileSystem
 import java.nio.file.FileSystems
 import java.nio.file.Files
 import kotlin.io.path.exists
 
-class FontUIBuilderContext(pack: File) {
-    private val logger = Logger(this)
+class FontUIBuilderContext internal constructor(pack: File) {
+    private val fontUILogger = FontUILogger(this)
 
     val fs: FileSystem = FileSystems.newFileSystem(pack.toPath())
 
@@ -31,15 +31,15 @@ class FontUIBuilderContext(pack: File) {
 
         Files.newBufferedReader(path).use { reader ->
             val glyphs = fontParser.parseFontFile(reader)
-            logger.log(glyphs.toString())
+            fontUILogger.log(glyphs.toString())
             this.glyphs[key] = glyphs
         }
 
-        logger.log("Registered font ${key.asMinimalString()}")
+        fontUILogger.log("Registered font ${key.asMinimalString()}")
     }
 
     fun build(): FontUI {
-        return FontUI(glyphs, defaultFontAscents)
+        return FontUI(glyphs, defaultFontAscents, spacingCharacters, fontUILogger)
     }
 
     fun registerDefaultAscents(vararg ascents: Int, getFontKey: (ascent: Int) -> Key) {
@@ -56,7 +56,7 @@ class FontUIBuilderContext(pack: File) {
         val path = fs.getPath("assets", font.namespace(), "font", "${font.value()}.json")
         if(!path.exists()) throw IllegalArgumentException("Spaces font ${font.asMinimalString()} was not found")
 
-        logger.log(chars.toString())
+        fontUILogger.log(chars.toString())
         spacingCharacters[font] = chars
     }
 }

@@ -4,6 +4,7 @@ import org.bukkit.NamespacedKey
 import org.bukkit.plugin.java.JavaPlugin
 import xyz.devcmb.fui.FontUI
 import xyz.devcmb.fui.builder.buildFontUI
+import xyz.devcmb.fui.draw.Spacer
 import java.io.File
 
 class FuiExample : JavaPlugin() {

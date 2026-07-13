@@ -1,6 +1,6 @@
 package xyz.devcmb.fui.util
 
-enum class DefaultFontGlyph(val char: Char, val width: Int) {
+internal enum class DefaultFontGlyph(val char: Char, val width: Int) {
     DEFAULT(' ', 4),
     UNICODE_0020(' ', 3),
     UNICODE_0021('!', 1),

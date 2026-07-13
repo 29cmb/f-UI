@@ -3,7 +3,8 @@ package xyz.devcmb.fui.font
 /**
  * A single font glyph apart of a font
  */
-data class FontGlyph(
+@ConsistentCopyVisibility
+data class FontGlyph internal constructor(
     /** The character that represents this glyph */
     val char: String,
     /** The height of the glyph's texture, including emtpy pixels */

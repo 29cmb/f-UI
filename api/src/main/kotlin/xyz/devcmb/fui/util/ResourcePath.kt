@@ -2,7 +2,7 @@ package xyz.devcmb.fui.util
 
 import java.io.File
 
-class ResourcePath(vararg parts: String) {
+class ResourcePath internal constructor(vararg parts: String) {
     constructor(path: String): this(*path.split("/").toTypedArray())
 
     val path = parts.joinToString("/")
