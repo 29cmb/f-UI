@@ -9,7 +9,7 @@
     },
     {
       "type": "bitmap",
-      "file": "tinsel:font/nonlatin_european_offset_48.png",
+      "file": "example:font/nonlatin_european_offset_48.png",
       "ascent": -29,
       "chars": [
         "¡‰­·₴≠¿×ØÞһðøþΑΒ",
@@ -84,7 +84,7 @@
     },
     {
       "type": "bitmap",
-      "file": "tinsel:font/accented_offset_48.png",
+      "file": "example:font/accented_offset_48.png",
       "height": 60,
       "ascent": -26,
       "chars": [
@@ -167,7 +167,7 @@
     },
     {
       "type": "bitmap",
-      "file": "tinsel:font/ascii_offset_48.png",
+      "file": "example:font/ascii_offset_48.png",
       "ascent": -29,
       "chars": [
         "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",

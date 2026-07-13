@@ -1,12 +1,21 @@
 {
   "providers": [
     {
+      "file": "example:glyph/collection.png",
       "type": "bitmap",
       "height": 8,
-      "file": "example:glyph/collection",
       "ascent": 7,
       "chars": [
         "\uF000"
+      ]
+    },
+    {
+      "file": "example:glyph/background.png",
+      "type": "bitmap",
+      "height": 30,
+      "ascent": 22,
+      "chars": [
+        "\uF001"
       ]
     }
   ]

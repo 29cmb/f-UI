@@ -39,18 +39,28 @@ class FontParser internal constructor(val builderContext: FontUIBuilderContext) 
             "assets",
             provider.file.namespace,
             "textures",
-            provider.file.resourcePath.toFilePath() + ".png"
+            provider.file.resourcePath.toFilePath()
         ).toString())
 
         if(!path.exists()) throw IllegalArgumentException("Font file $path was not found in the resource pack archive")
 
         val image = ImageIO.read(Files.newInputStream(path))
-        val width = image.trimmedWidth()
+
+        val trimmedWidth = image.trimmedWidth()
 
         val scaleFactor = provider.height.toDouble() / image.height.toDouble()
-        val scaledWidth = width * scaleFactor
 
-        return FontGlyph(provider.chars.first(), provider.height, scaledWidth, provider.ascent)
+        // FIXME: This doesn't account for minecraft's sampling of glyphs that aren't proper multiples of their height
+        // It shouldn't be too much of an issue since you can always just manually specify a length
+        // But still should be fixed at some point
+        val scaledWidth = trimmedWidth * scaleFactor
+
+        return FontGlyph(
+            provider.chars.first(),
+            provider.height,
+            scaledWidth,
+            provider.ascent
+        )
     }
 
     @Serializable
@@ -61,7 +71,7 @@ class FontParser internal constructor(val builderContext: FontUIBuilderContext) 
             val file: IdentifiedResource,
             val ascent: Int,
             val height: Int,
-            val chars: List<String>
+            val chars: List<Char>
         ) : FontProvider
     }
 }

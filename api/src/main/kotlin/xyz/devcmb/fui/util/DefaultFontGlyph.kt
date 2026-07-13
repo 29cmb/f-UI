@@ -1,8 +1,7 @@
 package xyz.devcmb.fui.util
 
 internal enum class DefaultFontGlyph(val char: Char, val width: Int) {
-    DEFAULT(' ', 4),
-    UNICODE_0020(' ', 3),
+    DEFAULT(' ', 3),
     UNICODE_0021('!', 1),
     UNICODE_0022('"', 3),
     UNICODE_0023('#', 5),
@@ -128,8 +127,8 @@ internal enum class DefaultFontGlyph(val char: Char, val width: Int) {
     UNICODE_00BF('¿', 5);
 
     companion object {
-        fun getFromChar(char: Char): DefaultFontGlyph? {
-            return DefaultFontGlyph.entries.find { it.char == char }
+        fun getFromChar(char: Char): DefaultFontGlyph {
+            return DefaultFontGlyph.entries.find { it.char == char } ?: DEFAULT
         }
     }
 }

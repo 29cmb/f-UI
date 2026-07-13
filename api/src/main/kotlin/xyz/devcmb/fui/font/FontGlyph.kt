@@ -6,7 +6,7 @@ package xyz.devcmb.fui.font
 @ConsistentCopyVisibility
 data class FontGlyph internal constructor(
     /** The character that represents this glyph */
-    val char: String,
+    val char: Char,
     /** The height of the glyph's texture, including emtpy pixels */
     val height: Int,
     /** The width of how the glyph will be rendered, accounting for the value of [height] and excluding empty pixels */

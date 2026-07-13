@@ -3,12 +3,17 @@ package xyz.devcmb.fui.draw
 import net.kyori.adventure.key.Key
 import net.kyori.adventure.text.Component
 import xyz.devcmb.fui.FontUI
+import kotlin.math.abs
 
-object Spacer {
-    data class SpacingEntry(val char: Char, val spacing: Int, val font: Key)
+class Spacer(val fontUI: FontUI) {
+    data class SpacingEntry(val char: Char, val spacing: Double, val font: Key)
 
-    fun getSpacing(fontUI: FontUI, space: Int): Component {
-        if(space == 0) return Component.empty()
+    /**
+     * Gets the spacing glyphs to negative or positive space a set amount
+     * @param space The space that is needed
+     */
+    fun getSpacing(space: Double): Component {
+        if(space == 0.0) return Component.empty()
 
         var remainingSpace = space
         val allSpaces = fontUI.spaces.flatMap { (key, spaces) ->
@@ -20,15 +25,15 @@ object Spacer {
 
         fun search() {
             val filteredSpaces = allSpaces.filter {
-                if (remainingSpace > 0) it.spacing in 1..remainingSpace
-                else it.spacing in remainingSpace..-1
+                if (remainingSpace > 0.0) it.spacing > 0.0 && it.spacing <= remainingSpace
+                else it.spacing in remainingSpace..<0.0
             }
 
             val entry = if (remainingSpace > 0) filteredSpaces.maxByOrNull { it.spacing }
             else filteredSpaces.minByOrNull { it.spacing }
 
             if(entry == null) {
-                fontUI.fontUILogger.log("Could not perfectly match $space using the provided glyphs")
+                fontUI.fontUILogger.warning("Could not perfectly match $space using the provided glyphs")
                 return
             }
 
@@ -38,7 +43,7 @@ object Spacer {
             )
             remainingSpace -= entry.spacing
 
-            if(remainingSpace != 0) search()
+            if(abs(remainingSpace) > 1e-5) search()
         }
 
         search()
